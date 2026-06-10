@@ -1,5 +1,49 @@
-# PROYECTO APLICACIÓN PWA PARA DANZA  
+ # PROYECTO APLICACIÓN PWA PARA DANZA  
 
-## Intoducción  
-Este proyecto es una PWA enfocada en la creación de una comunidad digital para grupos de danza de la ciudad de Cartagena de Indias.
+ ## Introducción
+
+Este proyecto es una Progressive Web Application (PWA) enfocada exclusivamente en la comunidad de danza,
+su objetivo principal es combatir la desinformación sobre la historia de los diferentes géneros de danza y aumentar la visibilidad de academias, instructores, eventos y talleres,
+inicialmente estará enfocada en Cartagena de Indias y la Costa Caribe Colombiana, con capacidad de expansión hacia todo Colombia y posteriormente otros países.
+
+## Problema 
+
+ Actualmente la información relacionada con la danza se encuentra dispersa entre múltiples plataformas:
+
+* Facebook
+
+* Instagram
+
+* WhatsApp
+
+* Sitios web individuales 
+
+
+Lo que proboca:
+
+
+* Descubrir eventos.
+
+* Encontrar academias.
+
+* Acceder a talleres.
+
+* Conocer la historia real de los diferentes géneros de danza. 
+
+
+## Tecnologias
+
+Frontend:
+
+* React
+* TailwindCSS
+
+Backend:
+
+* Spring Boot
+
+
+Base de Datos:
+
+* PostgreSQL/Supabase
 
