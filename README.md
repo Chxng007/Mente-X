@@ -19,7 +19,7 @@ inicialmente estará enfocada en Cartagena de Indias y la Costa Caribe Colombian
 * Sitios web individuales 
 
 
-Lo que proboca:
+Lo que provoca:
 
 
 * Descubrir eventos.
@@ -31,7 +31,7 @@ Lo que proboca:
 * Conocer la historia real de los diferentes géneros de danza. 
 
 
-## Tecnologias
+## Tecnologías
 
 Frontend:
 
