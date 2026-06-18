@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: danzapp-backend
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/danzapp}
+    username: ${SPRING_DATASOURCE_USERNAME:danzapp_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:changeme}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: ${SPRING_JPA_SHOW_SQL:true}
+    properties:
+      hibernate:
+        format_sql: true
+
+jwt:
+  secret: ${JWT_SECRET:d4nz4pp-s3cr3t-k3y-f0r-jwt-t0k3n-g3n3r4t10n-must-be-32-chars-min}
+  expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+
+server:
+  port: ${SERVER_PORT:8080}

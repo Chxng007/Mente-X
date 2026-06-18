@@ -27,6 +27,7 @@ public class Academy {
     @JoinColumn(name = "owner_id")
     private User owner;
 
+    @Builder.Default
     private Boolean approved = false;
 
     private LocalDateTime createdAt;
