@@ -33,6 +33,7 @@ public class User implements UserDetails {
     private String avatarUrl;
     private String bio;
     
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role = Role.USER;
@@ -41,6 +42,13 @@ public class User implements UserDetails {
     private Level level;
 
     private LocalDateTime createdAt;
+
+    public User(String email, String password, String name, Role role) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
