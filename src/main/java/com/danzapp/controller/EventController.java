@@ -2,7 +2,6 @@ package com.danzapp.controller;
 
 import com.danzapp.model.Event;
 import com.danzapp.repository.EventRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping("/api/events")
 public class EventController {
 
-    @Autowired
-    EventRepository eventRepository;
+    private final EventRepository eventRepository;
+
+    public EventController(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
 
     @GetMapping
     public List<Event> getAllEvents() {

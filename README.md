@@ -1,49 +1,73 @@
- # PROYECTO APLICACIÓN PWA PARA DANZA  
+# DanzApp Backend
 
- ## Introducción
+Backend API para DanzApp, una PWA enfocada en la comunidad de danza de Cartagena y la Costa Caribe Colombiana.
 
-Este proyecto es una Progressive Web Application (PWA) enfocada exclusivamente en la comunidad de danza,
-su objetivo principal es combatir la desinformación sobre la historia de los diferentes géneros de danza y aumentar la visibilidad de academias, instructores, eventos y talleres,
-inicialmente estará enfocada en Cartagena de Indias y la Costa Caribe Colombiana, con capacidad de expansión hacia todo Colombia y posteriormente otros países.
+## Tecnologias
 
-## Problema 
+- Java 17
+- Spring Boot
+- Spring Security + JWT
+- Spring Data JPA
+- PostgreSQL
+- Docker / Docker Compose
 
- Actualmente la información relacionada con la danza se encuentra dispersa entre múltiples plataformas:
+## Desarrollo local
 
-* Facebook
+Para ejecutar los tests:
 
-* Instagram
+```bash
+./mvnw test
+```
 
-* WhatsApp
+En Windows:
 
-* Sitios web individuales 
+```powershell
+.\mvnw.cmd test
+```
 
+## Docker
 
-Lo que provoca:
+Levanta PostgreSQL, la API y el frontend React:
 
+```bash
+docker compose up --build
+```
 
-* Descubrir eventos.
+Los servicios quedan disponibles en:
 
-* Encontrar academias.
+```text
+Frontend: http://localhost:5173
+Backend:  http://localhost:8080
+Postgres: localhost:5432
+```
 
-* Acceder a talleres.
+El frontend usa esta URL para llamar a la API:
 
-* Conocer la historia real de los diferentes géneros de danza. 
+```text
+http://localhost:8080
+```
 
+Servicios incluidos:
 
-## Tecnologías
+- `app`: backend Spring Boot.
+- `frontend`: frontend React con Vite.
+- `db`: PostgreSQL 16 con volumen persistente.
 
-Frontend:
+Variables principales:
 
-* React
-* TailwindCSS
+- `SPRING_DATASOURCE_URL`
+- `SPRING_DATASOURCE_USERNAME`
+- `SPRING_DATASOURCE_PASSWORD`
+- `JWT_SECRET`
 
-Backend:
+Para detener los contenedores:
 
-* Spring Boot
+```bash
+docker compose down
+```
 
+Para borrar tambien el volumen de PostgreSQL:
 
-Base de Datos:
-
-* PostgreSQL/Supabase
-
+```bash
+docker compose down -v
+```
