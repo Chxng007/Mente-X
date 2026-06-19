@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: danzapp
+      POSTGRES_USER: danzapp_user
+      POSTGRES_PASSWORD: changeme
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U danzapp_user -d danzapp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/danzapp
+      SPRING_DATASOURCE_USERNAME: danzapp_user
+      SPRING_DATASOURCE_PASSWORD: changeme
+      JWT_SECRET: d4nz4pp-s3cr3t-k3y-f0r-jwt-t0k3n-g3n3r4t10n-must-be-32-chars-min
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - app
+    environment:
+      VITE_API_URL: http://localhost:8080
+    ports:
+      - "5173:5173"
+
+volumes:
+  postgres_data:
