@@ -1,11 +1,48 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand */
+  --color-coral: #ff6b4a;
+  --color-coral-hover: #e85a3c;
+  --color-turquoise: #00b8a9;
+  --color-sand: #ffc857;
+
+  /* Neutros */
+  --color-bg-primary: #fafaf8;
+  --color-bg-secondary: #f3f4f6;
+  --color-surface: #ffffff;
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #6b7280;
+
+  /* Estados */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* Tipografía */
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Bordes (según Design.md) */
+  --radius-btn: 12px;
+  --radius-input: 12px;
+  --radius-card: 20px;
+  --radius-modal: 24px;
+
+  /* Elevación */
+  --shadow-elevation-1: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-elevation-2: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-elevation-3: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
 html {
-  background: #f8f5f0;
+  background: var(--color-bg-primary);
+  font-family: var(--font-sans);
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  color: var(--color-text-primary);
 }
