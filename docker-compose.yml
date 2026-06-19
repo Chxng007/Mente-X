@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:15-alpine
+    image: postgres:16-alpine
     environment:
       POSTGRES_DB: danzapp
       POSTGRES_USER: danzapp_user
@@ -36,7 +36,7 @@ services:
     environment:
       VITE_API_URL: http://localhost:8080
     ports:
-      - "5173:5173"
+      - "5173:80"
 
 volumes:
   postgres_data:
