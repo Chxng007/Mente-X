@@ -1,4 +1,10 @@
 package com.danzapp.repository;
 
-public interface HistoryRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.danzapp.model.History;
+
+@Repository
+public interface HistoryRepository extends JpaRepository< History, Long>{
+
 }
