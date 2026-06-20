@@ -1,17 +1,18 @@
 package com.danzapp.service;
 
-import com.danzapp.dto.JwtResponse;
-import com.danzapp.dto.LoginRequest;
-import com.danzapp.dto.SignupRequest;
-import com.danzapp.model.User;
-import com.danzapp.repository.UserRepository;
-import com.danzapp.security.JwtUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.danzapp.dto.JwtResponse;
+import com.danzapp.dto.LoginRequest;
+import com.danzapp.dto.SignupRequest;
+import com.danzapp.model.User;
+import com.danzapp.repository.UserRepository;
+import com.danzapp.security.JwtUtils;
 
 @Service
 public class AuthService {
@@ -22,9 +23,9 @@ public class AuthService {
     private final JwtUtils jwtUtils;
 
     public AuthService(AuthenticationManager authenticationManager,
-                       UserRepository userRepository,
-                       PasswordEncoder encoder,
-                       JwtUtils jwtUtils) {
+            UserRepository userRepository,
+            PasswordEncoder encoder,
+            JwtUtils jwtUtils) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.encoder = encoder;
@@ -38,11 +39,12 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         User userDetails = (User) authentication.getPrincipal();
         String jwt = jwtUtils.generateJwtToken(userDetails);
-        
-        return new JwtResponse(jwt, 
-                             userDetails.getId(), 
-                             userDetails.getEmail(),
-                             userDetails.getAuthorities().stream().map(item -> item.getAuthority()).toList());
+
+        return new JwtResponse(jwt,
+                userDetails.getId(),
+                userDetails.getEmail(),
+                userDetails.getName(),
+                userDetails.getAuthorities().stream().map(item -> item.getAuthority()).toList());
     }
 
     public User registerUser(SignupRequest signUpRequest) {
@@ -56,9 +58,9 @@ public class AuthService {
         }
 
         User user = new User(signUpRequest.getEmail(),
-                           encoder.encode(signUpRequest.getPassword()),
-                           signUpRequest.getName(),
-                           role);
+                encoder.encode(signUpRequest.getPassword()),
+                signUpRequest.getName(),
+                role);
 
         return userRepository.save(user);
     }
