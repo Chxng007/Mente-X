@@ -18,3 +18,17 @@ export function useRegister() {
         mutationFn: authApi.register,
     })
 }
+
+export function useRegisterAndLogin() {
+    const { persistSession } = useAuth()
+
+    return useMutation({
+        mutationFn: async (payload) => {
+            await authApi.register(payload)
+            return authApi.login({ email: payload.email, password: payload.password })
+        },
+        onSuccess: (session) => {
+            persistSession(session)
+        },
+    })
+}

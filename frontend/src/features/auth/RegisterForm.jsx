@@ -3,9 +3,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import Alert from '../../components/ui/Alert'
+import OptionCard from '../../components/ui/OptionCard'
 import { useForm } from '../../hooks/useForm'
 import { validateRegisterForm } from './authValidators'
-import { useRegister } from './useAuthMutations'
+import { useRegisterAndLogin } from './useAuthMutations'
 import { extractErrorMessage } from '../../utils/errors'
 
 const ROLE_OPTIONS = [
@@ -15,7 +16,7 @@ const ROLE_OPTIONS = [
 
 export default function RegisterForm() {
     const navigate = useNavigate()
-    const registerMutation = useRegister()
+    const registerMutation = useRegisterAndLogin()
     const [role, setRole] = useState('USER')
 
     const { values, errors, touched, handleChange, handleBlur, validateAll } = useForm({
@@ -31,7 +32,7 @@ export default function RegisterForm() {
             { name: values.name, email: values.email, password: values.password, role },
             {
                 onSuccess: () => {
-                    navigate('/iniciar-sesion', { replace: true, state: { registered: true } })
+                    navigate('/onboarding', { replace: true })
                 },
             }
         )
@@ -49,17 +50,12 @@ export default function RegisterForm() {
                 <span className="text-sm font-semibold text-text-primary">Quiero registrarme como</span>
                 <div className="grid grid-cols-2 gap-2">
                     {ROLE_OPTIONS.map((option) => (
-                        <button
+                        <OptionCard
                             key={option.value}
-                            type="button"
+                            label={option.label}
+                            selected={role === option.value}
                             onClick={() => setRole(option.value)}
-                            className={`rounded-btn border px-4 py-2.5 text-sm font-semibold transition-colors ${role === option.value
-                                    ? 'border-turquoise bg-turquoise/10 text-turquoise'
-                                    : 'border-neutral-200 text-text-secondary hover:border-turquoise/50'
-                                }`}
-                        >
-                            {option.label}
-                        </button>
+                        />
                     ))}
                 </div>
             </div>

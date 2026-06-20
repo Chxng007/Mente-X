@@ -34,6 +34,14 @@ export function AuthProvider({ children }) {
         setUser(userData)
     }, [])
 
+    const updateUser = useCallback((partialUser) => {
+        setUser((prev) => {
+            const next = { ...prev, ...partialUser }
+            localStorage.setItem(USER_KEY, JSON.stringify(next))
+            return next
+        })
+    }, [])
+
     const logout = useCallback(() => {
         localStorage.removeItem(TOKEN_KEY)
         localStorage.removeItem(USER_KEY)
