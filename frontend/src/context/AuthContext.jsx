@@ -1,6 +1,5 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react'
-
-const AuthContext = createContext(null)
+import { useCallback, useMemo, useState } from 'react'
+import { AuthContext } from './authContextInstance'
 
 const TOKEN_KEY = 'danzapp_token'
 const USER_KEY = 'danzapp_user'
@@ -25,6 +24,7 @@ export function AuthProvider({ children }) {
             email: session.email,
             name: session.name,
             roles: session.roles,
+            onboardingCompleted: session.onboardingCompleted,
         }
 
         localStorage.setItem(TOKEN_KEY, session.token)
@@ -55,18 +55,11 @@ export function AuthProvider({ children }) {
             user,
             isAuthenticated: Boolean(token),
             persistSession,
+            updateUser,
             logout,
         }),
-        [token, user, persistSession, logout]
+        [token, user, persistSession, updateUser, logout]
     )
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-}
-
-export function useAuth() {
-    const ctx = useContext(AuthContext)
-    if (!ctx) {
-        throw new Error('useAuth debe usarse dentro de un <AuthProvider>')
-    }
-    return ctx
 }

@@ -2,7 +2,7 @@ spring:
   application:
     name: danzapp-backend
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/danzapp}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5434/danzapp}
     username: ${SPRING_DATASOURCE_USERNAME:danzapp_user}
     password: ${SPRING_DATASOURCE_PASSWORD:changeme}
     driver-class-name: org.postgresql.Driver

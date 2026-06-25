@@ -7,7 +7,7 @@ import InterestsStep from '../features/onboarding/steps/InterestsStep'
 import BioStep from '../features/onboarding/steps/BioStep'
 import CompletionStep from '../features/onboarding/steps/CompletionStep'
 import { useUpdateProfile } from '../features/onboarding/useOnboardingMutations'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../context/useAuth'
 
 const TOTAL_STEPS = 4
 

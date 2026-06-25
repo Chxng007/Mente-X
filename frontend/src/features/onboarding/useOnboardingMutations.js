@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { userApi } from '../../api/userApi'
-import { useAuth } from '../../context/AuthContext'
+import { useAuth } from '../../context/useAuth'
 
 export function useUploadAvatar() {
     const { updateUser } = useAuth()

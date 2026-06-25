@@ -33,6 +33,16 @@ public class Workshop {
     
     private String videoUrl; // Para contenido privado
 
+    private String danceStyle;         // "Salsa", "Bachata", etc.
+    private String level;              // "Principiante", "Intermedio", "Avanzado"
+    private String schedule;           // "Mar y Jue, 18:00 COT"
+    private String instructorName;
+    private String instructorTitle;    // "Instructor Certificado", "Campeona Regional", etc.
+    private String instructorAvatarUrl;
+    private String city;
+    private String address;
+    private LocalDateTime startDate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "academy_id")
     private Academy academy;

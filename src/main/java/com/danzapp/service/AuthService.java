@@ -44,7 +44,8 @@ public class AuthService {
                 userDetails.getId(),
                 userDetails.getEmail(),
                 userDetails.getName(),
-                userDetails.getAuthorities().stream().map(item -> item.getAuthority()).toList());
+                userDetails.getAuthorities().stream().map(item -> item.getAuthority()).toList(),
+                userDetails.getOnboardingCompleted());
     }
 
     public User registerUser(SignupRequest signUpRequest) {
