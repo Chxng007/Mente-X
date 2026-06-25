@@ -32,7 +32,13 @@ public class Event {
     private LocalDateTime eventDate;
 
     private String danceStyle; // Salsa, Bachata, etc.
-    
+
+    private String category; // "Festival", "Concert", "Social", "Competition", "Online"
+    private String level;    // "Principiante", "Intermedio", "Avanzado", "Todos"
+    @Builder.Default
+    private boolean featured = false;
+    private String duration; // "2h", "Todo el día", etc.
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organizer_id")
     private User organizer;

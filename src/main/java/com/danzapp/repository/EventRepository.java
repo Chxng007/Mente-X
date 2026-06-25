@@ -9,4 +9,6 @@ import java.util.List;
 public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByCityContainingIgnoreCase(String city);
     List<Event> findByDanceStyleContainingIgnoreCase(String style);
+    List<Event> findByFeaturedTrue();
+    List<Event> findByCategoryIgnoreCase(String category);
 }
