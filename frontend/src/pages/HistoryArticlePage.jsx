@@ -68,7 +68,7 @@ export default function HistoryArticlePage() {
                         className="w-full h-80 object-cover"
                     />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 max-w-4xl">
                     <div className="flex flex-wrap gap-2 mb-3">
                         {article.readTimeMin > 0 && (

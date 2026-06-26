@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import { Search } from 'lucide-react'
 import { useAuth } from '../../context/useAuth'
 
 const NAV_LINKS = [
@@ -7,6 +8,7 @@ const NAV_LINKS = [
     { to: '/eventos', label: 'Eventos' },
     { to: '/talleres', label: 'Talleres' },
     { to: '/historia', label: 'Historia' },
+    { to: '/perfil', label: 'Perfil' },
 ]
 
 function BellIcon() {
@@ -73,6 +75,12 @@ export default function Navbar() {
                 <div className="flex items-center gap-3">
                     {isAuthenticated ? (
                         <>
+                            <button
+                                className="text-text-secondary hover:text-text-primary transition-colors p-1 rounded-full"
+                                aria-label="Buscar"
+                            >
+                                <Search size={20} />
+                            </button>
                             <button
                                 className="text-text-secondary hover:text-text-primary transition-colors p-1 rounded-full"
                                 aria-label="Notificaciones"

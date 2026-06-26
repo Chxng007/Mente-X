@@ -27,5 +27,8 @@ app:
   upload:
     dir: ${UPLOAD_DIR:uploads}
 
+stitch:
+  api-key: ${STITCH_API_KEY:}
+
 server:
   port: ${SERVER_PORT:8080}

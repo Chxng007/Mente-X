@@ -1,8 +1,17 @@
 import { useState } from 'react'
 import { useEvents } from '../features/events/useEvents'
+import { useWorkshops } from '../features/workshops/useWorkshops'
 import EventCard from '../components/ui/EventCard'
+import WorkshopListRow from '../components/ui/WorkshopListRow'
 
-const CATEGORIES = ['Todos', 'Festival', 'Concert', 'Social', 'Competition', 'Online']
+const CATEGORIES = [
+    { key: 'Todos', label: 'Todos', icon: '∞' },
+    { key: 'Festival', label: 'Festivales', icon: null },
+    { key: 'Concert', label: 'Conciertos', icon: null },
+    { key: 'Social', label: 'Sociales', icon: null },
+    { key: 'Competition', label: 'Competencias', icon: null },
+    { key: 'Online', label: 'Online', icon: null },
+]
 
 function SkeletonCard() {
     return <div className="rounded-card bg-bg-secondary animate-pulse h-52" />
@@ -14,6 +23,9 @@ export default function EventsPage() {
     const [filters, setFilters] = useState({ city: '', level: '', maxPrice: '' })
 
     const { data: events = [], isLoading, isError } = useEvents()
+    const { data: allWorkshops = [] } = useWorkshops()
+
+    const intensiveWorkshops = allWorkshops.slice(0, 4)
 
     const filtered = events.filter(e => {
         const matchCategory =
@@ -39,7 +51,6 @@ export default function EventsPage() {
                     Descubre festivales, conciertos y eventos de danza en toda Colombia.
                 </p>
 
-                {/* inline search filters */}
                 <div className="flex flex-col sm:flex-row gap-3">
                     <input
                         type="text"
@@ -71,17 +82,18 @@ export default function EventsPage() {
             <div className="mx-auto max-w-6xl px-4">
                 {/* ── CATEGORY CHIPS ── */}
                 <div className="flex flex-wrap gap-2 mb-8">
-                    {CATEGORIES.map(cat => (
+                    {CATEGORIES.map(({ key, label, icon }) => (
                         <button
-                            key={cat}
-                            onClick={() => setSelectedCategory(cat)}
-                            className={`text-sm font-semibold px-4 py-1.5 rounded-full border transition-colors ${
-                                selectedCategory === cat
+                            key={key}
+                            onClick={() => setSelectedCategory(key)}
+                            className={`text-sm font-semibold px-4 py-1.5 rounded-full border transition-colors flex items-center gap-1.5 ${
+                                selectedCategory === key
                                     ? 'bg-turquoise text-white border-turquoise'
                                     : 'border-gray-300 text-text-secondary hover:border-turquoise hover:text-turquoise'
                             }`}
                         >
-                            {cat}
+                            {icon && <span className="font-bold">{icon}</span>}
+                            {label}
                         </button>
                     ))}
                 </div>
@@ -103,7 +115,7 @@ export default function EventsPage() {
                 {/* ── MAIN CONTENT: sidebar + grid ── */}
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Sidebar filters */}
-                    <aside className="lg:w-56 flex-shrink-0">
+                    <aside className="lg:w-56 shrink-0">
                         <div className="bg-surface rounded-card shadow-elevation-1 p-5 flex flex-col gap-5 sticky top-24">
                             <h3 className="font-bold text-text-primary text-sm uppercase tracking-wide">Filtros</h3>
 
@@ -119,9 +131,9 @@ export default function EventsPage() {
                             </div>
 
                             <div>
-                                <label className="text-xs font-semibold text-text-secondary mb-1 block">Nivel</label>
+                                <label className="text-xs font-semibold text-text-secondary mb-2 block">Nivel</label>
                                 {['', 'Principiante', 'Intermedio', 'Avanzado', 'Todos'].map(lvl => (
-                                    <label key={lvl} className="flex items-center gap-2 cursor-pointer mb-1">
+                                    <label key={lvl} className="flex items-center gap-2 cursor-pointer mb-1.5">
                                         <input
                                             type="radio"
                                             name="level"
@@ -152,7 +164,7 @@ export default function EventsPage() {
 
                             <button
                                 onClick={() => setFilters({ city: '', level: '', maxPrice: '' })}
-                                className="text-xs text-text-secondary hover:text-coral transition-colors"
+                                className="text-xs text-text-secondary hover:text-coral transition-colors text-left"
                             >
                                 Limpiar filtros
                             </button>
@@ -160,7 +172,7 @@ export default function EventsPage() {
                     </aside>
 
                     {/* Event grid */}
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                         {isError ? (
                             <div className="text-center py-16">
                                 <p className="text-text-secondary">No se pudieron cargar los eventos. Intenta de nuevo.</p>
@@ -182,6 +194,26 @@ export default function EventsPage() {
                         )}
                     </div>
                 </div>
+
+                {/* ── TALLERES INTENSIVOS ── */}
+                {intensiveWorkshops.length > 0 && (
+                    <section className="mt-14 mb-6">
+                        <div className="flex items-center justify-between mb-5">
+                            <div>
+                                <h2 className="text-2xl font-black text-text-primary">Talleres Intensivos</h2>
+                                <p className="text-text-secondary text-sm mt-0.5">Aprende con los mejores instructores de la escena</p>
+                            </div>
+                            <a href="/talleres" className="text-sm font-semibold text-turquoise hover:underline flex items-center gap-1">
+                                Ver todos <span>↗</span>
+                            </a>
+                        </div>
+                        <div className="flex flex-col gap-3">
+                            {intensiveWorkshops.map(w => (
+                                <WorkshopListRow key={w.id} workshop={w} accent="turquoise" />
+                            ))}
+                        </div>
+                    </section>
+                )}
             </div>
         </div>
     )

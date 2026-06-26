@@ -33,4 +33,9 @@ public class DanceHistoryController {
     public List<DanceHistory> getFeaturedHistory() {
         return danceHistoryRepository.findByFeaturedTrue();
     }
+
+    @PostMapping
+    public DanceHistory createHistory(@RequestBody DanceHistory article) {
+        return danceHistoryRepository.save(article);
+    }
 }

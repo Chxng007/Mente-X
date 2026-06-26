@@ -9,22 +9,25 @@ function SkeletonCard({ tall = false }) {
 const TIMELINE = [
     {
         label: 'Orígenes Ancestrales',
-        color: 'text-coral',
-        number: '01',
+        bg: 'bg-coral',
+        text: 'text-coral',
+        number: 1,
         desc: 'Las danzas de los pueblos indígenas y las tradiciones africanas que llegaron con el mestizaje forjaron las bases rítmicas de Colombia.',
         points: ['Rituales chamánicos', 'Herencia bantú y yoruba', 'Danzas ceremoniales indígenas'],
     },
     {
         label: 'Evolución Urbana',
-        color: 'text-turquoise',
-        number: '02',
+        bg: 'bg-turquoise',
+        text: 'text-turquoise',
+        number: 2,
         desc: 'El siglo XX trajo la migración y la fusión. La Cumbia y la Salsa Caleña emergieron como expresiones de identidad en las ciudades.',
         points: ['Auge de la Cumbia en la Costa', 'Salsa Cali como fenómeno social', 'El Vallenato y el acordeón'],
     },
     {
         label: 'Fusión Contemporánea',
-        color: 'text-sand',
-        number: '03',
+        bg: 'bg-sand',
+        text: 'text-sand',
+        number: 3,
         desc: 'Hoy, el reggaeton, el hip hop y los géneros urbanos se mezclan con las raíces para crear nuevas expresiones que conquistan el mundo.',
         points: ['Champeta y resistencia cultural', 'Breaking y cultura urbana', 'Fusión global con identidad local'],
     },
@@ -46,7 +49,7 @@ export default function HistoryPage() {
         <div className="min-h-screen bg-bg-primary">
             {/* ── HERO ── */}
             <div className="relative bg-[#0f0720] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-coral/10 to-turquoise/5" />
+                <div className="absolute inset-0 bg-linear-to-br from-coral/10 to-turquoise/5" />
                 <div className="relative max-w-6xl mx-auto px-4 py-20 text-center">
                     <span className="inline-block bg-white/10 border border-white/20 text-white/80 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
                         Nuestra Herencia
@@ -99,13 +102,15 @@ export default function HistoryPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         {TIMELINE.map(item => (
                             <div key={item.number} className="bg-surface rounded-card shadow-elevation-1 p-6">
-                                <p className={`text-4xl font-black mb-2 ${item.color}`}>{item.number}</p>
-                                <h3 className={`font-black text-lg mb-3 ${item.color}`}>{item.label}</h3>
+                                <div className={`w-10 h-10 rounded-full ${item.bg} text-white font-black text-lg flex items-center justify-center mb-3`}>
+                                    {item.number}
+                                </div>
+                                <h3 className={`font-black text-lg mb-3 ${item.text}`}>{item.label}</h3>
                                 <p className="text-text-secondary text-sm leading-relaxed mb-4">{item.desc}</p>
                                 <ul className="flex flex-col gap-1.5">
                                     {item.points.map(p => (
                                         <li key={p} className="text-xs text-text-secondary flex items-start gap-2">
-                                            <span className={`mt-0.5 font-bold ${item.color}`}>•</span>
+                                            <span className={`mt-0.5 font-bold ${item.text}`}>•</span>
                                             {p}
                                         </li>
                                     ))}
