@@ -1,2 +1,0 @@
-- [Frontend stack](project_frontend_stack.md) — DanzApp frontend: React 19 + Vite 8 + Tailwind 4, JS/JSX (no TS), TanStack Query + Axios
-- [Windows case-collision pitfall](feedback_windows_case_collision.md) — never create a module differing only by case from an existing file
